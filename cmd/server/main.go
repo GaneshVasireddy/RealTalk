@@ -102,6 +102,28 @@ func initializeServer(config *config.Config) {
 			}
 		}
 	})
+
+	http.HandleFunc("/api/v1/posts", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodGet {
+			fmt.Println("Fetching posts")
+
+			w.Header().Set("Content-Type", "application/json")
+
+			posts := []map[string]string{
+				{"id": "1", "title": "Post 1", "image_url": "https://cdn.pixabay.com/photo/2024/10/02/18/24/leaf-9091894_1280.jpg"},
+				{"id": "2", "title": "Post 2", "image_url": "https://cdn.pixabay.com/photo/2023/06/04/20/21/cat-8040862_960_720.jpg"},
+				{"id": "3", "title": "Post 3", "image_url": "https://cdn.pixabay.com/photo/2025/06/26/04/14/bonfire-9681097_640.jpg"},
+				{"id": "4", "title": "Post 4", "image_url": "https://cdn.pixabay.com/photo/2025/06/06/14/39/mountain-9644976_640.jpg"},
+				{"id": "5", "title": "Post 5", "image_url": "https://cdn.pixabay.com/photo/2021/10/29/13/30/love-6751932_640.jpg"},
+			}
+
+			if err := json.NewEncoder(w).Encode(posts); err != nil {
+				http.Error(w, "Failed to encode posts", http.StatusInternalServerError)
+				return
+			}
+			fmt.Println("Posts fetched successfully")
+		}
+	})		
 }
 
 func BroadcastMessage(event Event, client map[string]map[string]Client) {
