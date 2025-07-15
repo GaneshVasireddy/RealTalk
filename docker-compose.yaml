@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  realtalk_mongo_db:
+    image: mongo:8.0
+    container_name: realtalk_mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./.docker/db/mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1234

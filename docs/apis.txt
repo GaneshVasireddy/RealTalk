@@ -1,0 +1,18 @@
+Messages Post api:
+
+Request body:
+
+{
+    user : {
+        "id" : "6326kn33nw"
+    }
+    message : {
+        "body" : "first post message"
+    }
+}
+
+Response body:
+
+{
+    message : "message posted successfully"
+}

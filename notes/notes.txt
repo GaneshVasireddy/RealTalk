@@ -1,0 +1,17 @@
+Graceful Shutdown : https://dev.to/mokiat/proper-http-shutdown-in-go-3fji
+
+channel --> user-1 ----> session-1
+                   ----> session-2
+
+{
+    channel-1: {
+        user-1: {
+            session-1: {
+
+            },
+            session-2: {
+
+            }
+        }
+    }
+}
